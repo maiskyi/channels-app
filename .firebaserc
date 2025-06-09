@@ -1,17 +1,18 @@
 {
   "projects": {
-    "default": "creep-feed"
+    "default": "channels-feed"
   },
   "targets": {
-    "creep-feed": {
+    "channels-feed": {
       "hosting": {
         "dev": [
-          "creep-feed-dev"
+          "channels-feed-dev"
         ],
         "prod": [
-          "creep-feed"
+          "channels-feed"
         ]
       }
     }
-  }
+  },
+  "etags": {}
 }
