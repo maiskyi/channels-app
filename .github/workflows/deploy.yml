@@ -54,6 +54,6 @@ jobs:
         with:
           target: ${{ vars.FIREBASE_HOSTING_TARGET }}
           repoToken: ${{ secrets.GITHUB_TOKEN }}
-          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_CREEP_FEED }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_CHANNELS_FEED }}
           channelId: ${{ vars.FIREBASE_CHANEL_ID }}
           projectId: ${{ secrets.FIREBASE_PROJECT_ID }}
