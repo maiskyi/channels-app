@@ -3,7 +3,7 @@
     "default": "creep-feed"
   },
   "targets": {
-    "fabled-976c8": {
+    "creep-feed": {
       "hosting": {
         "dev": [
           "creep-feed-dev"
