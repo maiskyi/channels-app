@@ -1,0 +1,76 @@
+.root {
+  position: relative;
+  margin: 0;
+
+  &::part(native) {
+    height: auto;
+  }
+
+  &.small {
+    --padding-start: 16px;
+    --padding-end: 16px;
+    --padding-top: 10px;
+    --padding-bottom: 10px;
+    font-size: 12px;
+    line-height: 14px;
+    font-weight: 400;
+    min-height: 32px;
+    .icon {
+      margin: 0 12px 0 0;
+      font-size: 16px;
+    }
+  }
+
+  &.default {
+    --padding-start: 26px;
+    --padding-end: 26px;
+    --padding-top: 12px;
+    --padding-bottom: 12px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    min-height: 48px;
+    .icon {
+      margin: 0 16px 0 0;
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  &.light {
+    &.solid {
+      --background: var(--color-bnw-800);
+      &::part(native) {
+        background: var(--color-bnw-800);
+      }
+    }
+  }
+
+  &.primary {
+    &.solid {
+      --background: var(--color-gradient-brand-horizontal);
+      &::part(native) {
+        background: var(--color-gradient-brand-horizontal);
+      }
+    }
+  }
+}
+
+.spinner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  &.small {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.transparent {
+  opacity: 0;
+}
+
+.social {
+  --background: var(--color-bnw-900);
+}
