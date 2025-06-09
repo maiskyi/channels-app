@@ -1,4 +1,5 @@
 /// <reference types="vitest" />
+import path from 'path';
 
 import legacy from '@vitejs/plugin-legacy'
 import react from '@vitejs/plugin-react'
@@ -10,6 +11,15 @@ export default defineConfig({
     react(),
     legacy()
   ],
+  resolve: {
+    alias: {
+      '@bootstrap': path.resolve(__dirname, './src/_bootstrap'),
+      '@common': path.resolve(__dirname, './src/_common'),
+      '@core': path.resolve(__dirname, './src/_core'),
+      '@locale': path.resolve(__dirname, './src/_locale'),
+      '@network': path.resolve(__dirname, './src/_network'),
+    },
+  },
   test: {
     globals: true,
     environment: 'jsdom',
