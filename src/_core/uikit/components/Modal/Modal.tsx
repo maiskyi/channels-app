@@ -24,7 +24,7 @@ export const Modal = forwardRef<ModalElement, ModalProps>(function Modal(
   ref
 ) {
   // eslint-disable-next-line no-undef
-  const modal = useRef<HTMLIonModalElement>();
+  const modal = useRef<HTMLIonModalElement>(null);
 
   useImperativeHandle(ref, () => ({
     dismiss: () => modal.current.dismiss(),

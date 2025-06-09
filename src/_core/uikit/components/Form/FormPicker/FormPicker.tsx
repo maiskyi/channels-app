@@ -49,9 +49,9 @@ export const FormPicker: FormPickerComponent = ({
   ...props
 }) => {
   const id = useId();
-  const ref = useRef<HTMLAnchorElement>();
+  const ref = useRef<HTMLAnchorElement>(null);
   // eslint-disable-next-line no-undef
-  const modal = useRef<HTMLIonModalElement>();
+  const modal = useRef<HTMLIonModalElement>(null);
 
   const placeholder = useContextSelector(
     LocalizationContext,

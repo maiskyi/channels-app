@@ -30,7 +30,7 @@ export const Onboarding: OnboardingComponent = ({
   onSkip = defaultOnSkip,
   onCompleted = defaultOnCompleted,
 }: OnboardingProps) => {
-  const swiper = useRef<SwiperRef>();
+  const swiper = useRef<SwiperRef>(null);
 
   const [{ isEnd }, setState] = useState({
     isEnd: false,

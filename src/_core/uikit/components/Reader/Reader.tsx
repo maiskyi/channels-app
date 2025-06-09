@@ -24,7 +24,7 @@ export const Reader: FC<ReaderProps> = ({
   content,
   onCompleted = defaultOnCompleted,
 }) => {
-  const swiper = useRef<SwiperRef>();
+  const swiper = useRef<SwiperRef>(null);
 
   const { value: length } = useMediaSwitch({
     lg: 600,

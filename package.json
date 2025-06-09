@@ -9,14 +9,19 @@
     "preview": "vite preview",
     "test.e2e": "cypress run",
     "test.unit": "vitest",
-    "lint": "eslint"
+    "lint": "eslint ./src --max-warnings=0"
   },
   "dependencies": {
+    "@capacitor-community/in-app-review": "^7.0.1",
     "@capacitor/app": "7.0.1",
+    "@capacitor/browser": "^7.0.1",
     "@capacitor/core": "7.3.0",
+    "@capacitor/device": "^7.0.1",
     "@capacitor/haptics": "7.0.1",
     "@capacitor/keyboard": "7.0.1",
+    "@capacitor/splash-screen": "^7.0.1",
     "@capacitor/status-bar": "7.0.1",
+    "@ionic/core": "^8.6.0",
     "@ionic/react": "^8.5.0",
     "@ionic/react-router": "^8.5.0",
     "@react-spring/web": "^10.0.1",
@@ -28,8 +33,13 @@
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "react-hook-form": "^7.57.0",
+    "react-responsive": "^10.0.1",
     "react-router": "^5.3.4",
-    "react-router-dom": "^5.3.4"
+    "react-router-dom": "^5.3.4",
+    "react-type-animation": "^3.2.0",
+    "react-use": "^17.6.0",
+    "swiper": "^11.2.8",
+    "use-context-selector": "^2.0.0"
   },
   "devDependencies": {
     "@capacitor/cli": "7.3.0",
@@ -37,6 +47,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^14.4.3",
+    "@types/lodash": "^4.17.17",
     "@types/react": "19.0.10",
     "@types/react-dom": "19.0.4",
     "@vitejs/plugin-legacy": "^5.0.0",
