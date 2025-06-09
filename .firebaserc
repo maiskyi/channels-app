@@ -1,0 +1,17 @@
+{
+  "projects": {
+    "default": "creep-feed"
+  },
+  "targets": {
+    "fabled-976c8": {
+      "hosting": {
+        "dev": [
+          "creep-feed-dev"
+        ],
+        "prod": [
+          "creep-feed"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,64 @@
+.default {
+  color: var(--ion-text-color);
+  margin: 0;
+  &.muted {
+    color: #ababab;
+  }
+  &.secondary {
+    color: var(--ion-color-secondary);
+  }
+}
+
+.h1 {
+  font-size: 36px;
+  line-height: 48px;
+}
+
+.h3 {
+  font-size: 24px;
+  line-height: 36px;
+}
+
+.h4 {
+  font-size: 20px;
+  line-height: 30px;
+}
+
+.body-1 {
+  font-size: 16px !important;
+  line-height: 24px;
+  margin: 0;
+}
+
+.body-2 {
+  font-size: 14px !important;
+  line-height: 21px;
+  margin: 0;
+}
+
+.body-3 {
+  font-size: 12px !important;
+  line-height: 18px; /* 150% */
+}
+
+.body-4 {
+  font-size: 10px !important;
+  line-height: 15px;
+  margin: 0;
+}
+
+.regular {
+  font-weight: 400;
+}
+
+.medium {
+  font-weight: 500;
+}
+
+.semi-bold {
+  font-weight: 600;
+}
+
+.bold {
+  font-weight: 700;
+}

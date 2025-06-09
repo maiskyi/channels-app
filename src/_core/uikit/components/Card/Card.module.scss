@@ -1,0 +1,27 @@
+.root {
+  border-radius: 12px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  &.outline {
+    box-shadow: 0px 0px 0px 1px var(--ion-color-secondary);
+  }
+  &.bgHorizontal {
+    background: var(
+      --color-gradient-mix-horizontal,
+      linear-gradient(90deg, #f58e2e 0%, #4758ef 100%)
+    );
+  }
+}
+
+.header {
+  .avatar {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+  }
+
+  &:has(> .avatar) {
+    position: relative;
+    padding-left: 88px;
+  }
+}
