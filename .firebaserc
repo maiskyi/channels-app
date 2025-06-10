@@ -5,11 +5,8 @@
   "targets": {
     "channels-feed": {
       "hosting": {
-        "dev": [
-          "channels-feed-dev"
-        ],
-        "prod": [
-          "channels-feed"
+        "default": [
+          "creep-feed"
         ]
       }
     }
