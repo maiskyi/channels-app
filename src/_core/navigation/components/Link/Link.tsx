@@ -16,6 +16,7 @@ export const Link: FC<LinkParams> = ({
   search,
 }) => {
   return (
+    // @ts-ignore
     <RouterLink
       to={{
         pathname: generatePath(pathname, params),

@@ -9,6 +9,7 @@ export const Routes: FC = () => {
   return (
     <Router>
       <RouterOutlet>
+        {/* @ts-ignore */}
         <Route exact path={RoutePath.Index}>
           <Home />
         </Route>
