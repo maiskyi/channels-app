@@ -1,16 +1,6 @@
 // import { Redirect, Route } from 'react-router-dom';
 import { FC } from 'react';
 
-import {
-  IonIcon,
-  IonLabel,
-  IonRouterOutlet,
-  IonTabBar,
-  IonTabButton,
-  IonTabs,
-} from '@ionic/react';
-import { IonReactRouter } from '@ionic/react-router';
-import { ellipse, square, triangle } from 'ionicons/icons';
 import { Bootstrap } from '@bootstrap/components';
 
 import { Routes } from './Routes';
