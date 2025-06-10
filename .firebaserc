@@ -6,7 +6,7 @@
     "channels-feed": {
       "hosting": {
         "default": [
-          "creep-feed"
+          "channels-feed"
         ]
       }
     }
