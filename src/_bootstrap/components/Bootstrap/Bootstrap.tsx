@@ -2,8 +2,16 @@ import { FC, PropsWithChildren } from 'react';
 
 import { ThemeProvider } from '@core/uikit';
 
-type BootstrapProps = PropsWithChildren;
+import { Network, NetworkProps } from '../Network';
 
-export const Bootstrap: FC<BootstrapProps> = ({ children }) => {
-  return <ThemeProvider>{children}</ThemeProvider>;
+export type BootstrapProps = PropsWithChildren<{
+  network: NetworkProps;
+}>;
+
+export const Bootstrap: FC<BootstrapProps> = ({ children, network }) => {
+  return (
+    <ThemeProvider>
+      <Network {...network}>{children}</Network>
+    </ThemeProvider>
+  );
 };

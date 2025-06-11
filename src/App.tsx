@@ -1,7 +1,7 @@
 // import { Redirect, Route } from 'react-router-dom';
 import { FC } from 'react';
 
-import { Bootstrap } from '@bootstrap/components';
+import { Bootstrap, BootstrapProps } from '@bootstrap/components';
 
 import { Routes } from './Routes';
 
@@ -9,9 +9,11 @@ import { Routes } from './Routes';
 // import Tab2 from './pages/Tab2';
 // import Tab3 from './pages/Tab3';
 
-const App: FC = () => {
+export type AppProps = BootstrapProps;
+
+export const App: FC<AppProps> = ({ ...props }) => {
   return (
-    <Bootstrap>
+    <Bootstrap {...props}>
       <Routes />
       {/* <IonReactRouter>
         <IonTabs>
