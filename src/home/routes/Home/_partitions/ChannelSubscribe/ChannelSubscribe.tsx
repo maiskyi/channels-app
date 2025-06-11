@@ -3,12 +3,13 @@ import { memo } from 'react';
 import { Box, Card, Icon, Typography } from '@core/uikit';
 import { useTranslation } from '@core/i18n';
 import { Link } from '@core/navigation';
+import { RoutePath } from '@bootstrap/constants';
 
 export const ChannelSubscribe = memo(function FablesCreate() {
   const { t } = useTranslation();
 
   return (
-    <Link pathname="/qwe" unstyled>
+    <Link pathname={RoutePath.Search} unstyled>
       <Card color="horizontal">
         <Card.Content>
           <Box alignItems="center" display="flex" gap={12}>
