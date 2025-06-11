@@ -1,9 +1,28 @@
 import { FC, PropsWithChildren } from 'react';
 
 import { ThemeProvider } from '@core/uikit';
+import { QueryProvider } from '@network/core';
+import { LocalizationProvider, LocalizationProviderProps } from '@core/i18n';
 
-type BootstrapProps = PropsWithChildren;
+import { Network, NetworkProps } from '../Network';
 
-export const Bootstrap: FC<BootstrapProps> = ({ children }) => {
-  return <ThemeProvider>{children}</ThemeProvider>;
+export type BootstrapProps = PropsWithChildren<{
+  network: NetworkProps;
+  localization: LocalizationProviderProps;
+}>;
+
+export const Bootstrap: FC<BootstrapProps> = ({
+  children,
+  network,
+  localization,
+}) => {
+  return (
+    <ThemeProvider>
+      <QueryProvider>
+        <LocalizationProvider {...localization}>
+          <Network {...network}>{children}</Network>
+        </LocalizationProvider>
+      </QueryProvider>
+    </ThemeProvider>
+  );
 };

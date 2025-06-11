@@ -34,8 +34,8 @@
       "@network/*": [
         "./src/_network/*"
       ],
-      "@locale/*": [
-        "./src/_locale/*"
+      "@i18n/*": [
+        "./src/_i18n/*"
       ]
     },
   },

@@ -8,7 +8,7 @@ import { ICON } from '../../Icon';
 import styles from './HeaderBack.module.scss';
 
 interface HeaderBackProps {
-  pathname?: string;
+  pathname: string;
   color?: Color;
 }
 
