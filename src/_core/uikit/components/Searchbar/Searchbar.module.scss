@@ -1,0 +1,27 @@
+.root {
+  --border-radius: 12px;
+  min-height: 48px;
+  --background: var(--color-bnw-800);
+  --border-color: var(--color-bnw-700);
+  --placeholder-color: var(--color-bnw-700);
+  --highlight-height: 1px;
+  caret-color: var(--ion-color-dark) !important;
+  --icon-color: var(--ion-color-dark);
+  &:global(.searchbar-has-focus) {
+    ion-icon {
+      color: var(--ion-color-primary);
+    }
+  }
+  :global(.searchbar-input-container) {
+    min-height: 48px;
+    input {
+      padding-inline-start: 48px !important;
+      padding-inline-end: 16px;
+      font-size: 14px;
+      line-height: 21px;
+    }
+    ion-icon {
+      left: 16px;
+    }
+  }
+}

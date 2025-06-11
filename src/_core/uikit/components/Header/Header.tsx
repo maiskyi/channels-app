@@ -3,6 +3,7 @@ import {
   forwardRef,
   PropsWithChildren,
   ReactElement,
+  ReactNode,
 } from 'react';
 import classNames from 'classnames';
 import { useContextSelector } from 'use-context-selector';
@@ -19,6 +20,7 @@ import { HeaderButtons } from './HeaderButtons/HeaderButtons';
 import { HeaderButton } from './HeaderButton/HeaderButton';
 
 import styles from './Header.module.scss';
+import components from '../components.module.scss';
 
 export type HeaderProps = PropsWithChildren<{
   className?: string;
@@ -26,6 +28,7 @@ export type HeaderProps = PropsWithChildren<{
   fixed?: boolean;
   collapse?: ComponentProps<typeof IonHeader>['collapse'];
   transparent?: boolean;
+  subheader?: ReactNode;
 }>;
 
 interface HeaderComponent {
@@ -37,7 +40,7 @@ interface HeaderComponent {
 }
 
 export const Header = forwardRef<any, HeaderProps>(function Header(
-  { children, className, translucent, collapse, transparent },
+  { children, className, translucent, collapse, transparent, subheader },
   ref
 ) {
   const withCover = useContextSelector(
@@ -53,6 +56,7 @@ export const Header = forwardRef<any, HeaderProps>(function Header(
   return (
     <IonHeader
       className={classNames(
+        components.header,
         styles.root,
         'ion-no-border',
         {
@@ -75,6 +79,7 @@ export const Header = forwardRef<any, HeaderProps>(function Header(
             >
               {children}
             </IonToolbar>
+            {!!subheader && <IonToolbar>{subheader}</IonToolbar>}
           </IonCol>
         </IonRow>
       </IonGrid>
