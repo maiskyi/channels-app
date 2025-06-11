@@ -18,7 +18,7 @@ export const ChannelSubscribe = memo(function FablesCreate() {
             </Box>
             <Box display="flex" flex={1} flexDirection="column" gap={4}>
               <Typography variant="body-2" weight="semi-bold">
-                {t('actions.createNewFable')}
+                {t('actions.subscribeToChannel')}
               </Typography>
               <Typography variant="body-4">{t('intro.home')}</Typography>
             </Box>
