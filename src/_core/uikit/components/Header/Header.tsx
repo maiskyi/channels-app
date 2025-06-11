@@ -79,7 +79,9 @@ export const Header = forwardRef<any, HeaderProps>(function Header(
             >
               {children}
             </IonToolbar>
-            {!!subheader && <IonToolbar>{subheader}</IonToolbar>}
+            {!!subheader && (
+              <IonToolbar className={styles.subheader}>{subheader}</IonToolbar>
+            )}
           </IonCol>
         </IonRow>
       </IonGrid>
