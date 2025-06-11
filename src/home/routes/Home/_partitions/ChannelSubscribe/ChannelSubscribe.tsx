@@ -1,7 +1,7 @@
 import { memo } from 'react';
 
 import { Box, Card, Icon, Typography } from '@core/uikit';
-import { useTranslation } from '@core/localization';
+import { useTranslation } from '@core/i18n';
 import { Link } from '@core/navigation';
 
 export const ChannelSubscribe = memo(function FablesCreate() {
