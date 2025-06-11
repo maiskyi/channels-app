@@ -1,15 +1,7 @@
 import { FC, useState } from 'react';
 import { get } from 'lodash';
 
-import {
-  Content,
-  Form,
-  Grid,
-  Header,
-  Page,
-  Searchbar,
-  Skeleton,
-} from '@core/uikit';
+import { Content, Grid, Header, Page, Searchbar, Skeleton } from '@core/uikit';
 import { RoutePath } from '@bootstrap/constants';
 import { useChannelsSearch } from '@network/api';
 import { ChannelCard } from '@common/components';
