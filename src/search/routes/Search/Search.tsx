@@ -1,15 +1,45 @@
 import { FC } from 'react';
+import { get } from 'lodash';
 
-import { Content, Header, Page } from '@core/uikit';
+import { Content, Grid, Header, Page } from '@core/uikit';
 import { RoutePath } from '@bootstrap/constants';
+import { useChannelsSearch } from '@network/api';
+import { ChannelCard } from '@common/components';
+import { Link } from '@core/navigation';
+
+import { INITIAL_DATA } from './Search.const';
 
 export const Search: FC = () => {
+  const { data } = useChannelsSearch({
+    query: 'news',
+  });
+
+  const channels = get(data, ['data'], INITIAL_DATA);
+
   return (
     <Page>
       <Header>
         <Header.Back pathname={RoutePath.Index} />
       </Header>
-      <Content>123</Content>
+      <Content>
+        <Grid>
+          {channels.map((item) => {
+            return (
+              <Grid.Row flex="0 0 auto" key={item.id}>
+                <Grid.Cell>
+                  <Link
+                    params={{ id: item.id }}
+                    pathname={RoutePath.Channel}
+                    unstyled
+                  >
+                    <ChannelCard item={item} />
+                  </Link>
+                </Grid.Cell>
+              </Grid.Row>
+            );
+          })}
+        </Grid>
+      </Content>
     </Page>
   );
 };

@@ -5,6 +5,6 @@ import * as DTO from './__generated__/client.schemas';
 export * from './components/ApiProvider';
 
 // Hooks
-export { useGetSearchChannelsInfinite } from './__generated__/client';
+export { useChannelsSearch } from './__generated__/client';
 
 export { DTO };

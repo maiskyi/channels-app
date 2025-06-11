@@ -19,7 +19,7 @@ export interface GetSearchChannelsResponse {
   data: SearchChannelsItem[];
 }
 
-export type GetSearchChannelsParams = {
+export type ChannelsSearchParams = {
   take?: number;
   skip?: number;
   query: string;
