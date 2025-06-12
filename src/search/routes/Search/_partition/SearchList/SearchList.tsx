@@ -7,7 +7,7 @@ import { RoutePath } from '@bootstrap/constants';
 import { ChannelCard } from '@common/components';
 
 interface SearchListProps {
-  data: DTO.SearchChannelsItem[];
+  data: DTO.ChannelItem[];
 }
 
 export const SearchList: FC<SearchListProps> = ({ data }) => {

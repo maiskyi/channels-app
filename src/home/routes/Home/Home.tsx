@@ -7,6 +7,7 @@ import {
   Header,
   InfiniteScroll,
   Page,
+  SafeArea,
   Skeleton,
   useViewWillEnter,
 } from '@core/uikit';
@@ -17,6 +18,7 @@ import { RoutePath } from '@bootstrap/constants';
 import { useTranslation } from '@core/i18n';
 
 import { ChannelSubscribe } from './_partitions/ChannelSubscribe';
+import { ChannelsEmpty } from './_partitions/ChannelsEmpty';
 import { INITIAL_DATA } from './Home.const';
 
 export const Home: FC = () => {
@@ -37,6 +39,8 @@ export const Home: FC = () => {
       }
     );
 
+  const total = get(data, ['pages', 0, 'total'], INITIAL_DATA.total);
+
   const channels = get(data, ['pages'], [INITIAL_DATA]).flatMap(
     ({ data }) => data
   );
@@ -52,27 +56,42 @@ export const Home: FC = () => {
       </Header>
       <Content>
         <InfiniteScroll disabled={!hasNextPage} onScroll={fetchNextPage}>
-          <Grid>
-            <Grid.Row flex="0 0 auto">
-              <Grid.Cell>
-                <ChannelSubscribe />
-              </Grid.Cell>
-            </Grid.Row>
-            <Skeleton isLoading={isLoading}>
-              {channels.map((item) => {
-                return (
-                  <Link
-                    key={item.id}
-                    params={{ id: item.id }}
-                    pathname={RoutePath.Channel}
-                    unstyled
-                  >
-                    <ChannelCard item={item} />
-                  </Link>
-                );
-              })}
-            </Skeleton>
-          </Grid>
+          <SafeArea
+            display="flex"
+            flexDirection="column"
+            minHeight="100%"
+            safe={['bottom']}
+          >
+            <Grid>
+              <Grid.Row flex="0 0 auto">
+                <Grid.Cell>
+                  <Header collapse="condense">
+                    <Header.Title size="large">{t('pages.home')}</Header.Title>
+                  </Header>
+                </Grid.Cell>
+              </Grid.Row>
+              <Grid.Row flex="0 0 auto">
+                <Grid.Cell>
+                  <ChannelSubscribe />
+                </Grid.Cell>
+              </Grid.Row>
+              <Skeleton isLoading={isLoading}>
+                {channels.map((item) => {
+                  return (
+                    <Link
+                      key={item.id}
+                      params={{ id: item.id }}
+                      pathname={RoutePath.Channel}
+                      unstyled
+                    >
+                      <ChannelCard item={item} />
+                    </Link>
+                  );
+                })}
+                {!total && <ChannelsEmpty />}
+              </Skeleton>
+            </Grid>
+          </SafeArea>
         </InfiniteScroll>
       </Content>
     </Page>

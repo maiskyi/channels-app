@@ -1,4 +1,9 @@
 export const empty = {
+  noChannels: {
+    description:
+      'Channels you follow will appear here once you start adding them',
+    title: 'Your channel list is empty',
+  },
   noSearchResults: {
     description:
       'We couldn’t find anything matching your search — but don’t give up!',

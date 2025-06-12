@@ -3,7 +3,7 @@ import { FC } from 'react';
 import { useTranslation } from '@core/i18n';
 import { Banner, Box, Grid } from '@core/uikit';
 
-export const SearchEmpty: FC = () => {
+export const ChannelsEmpty: FC = () => {
   const { t } = useTranslation();
 
   return (
@@ -16,10 +16,10 @@ export const SearchEmpty: FC = () => {
         minHeight="100%"
       >
         <Banner>
-          <Banner.Icon icon="search" />
-          <Banner.Title>{t('empty.noSearchResults.title')}</Banner.Title>
+          <Banner.Icon icon="send" />
+          <Banner.Title>{t('empty.noChannels.title')}</Banner.Title>
           <Banner.Description>
-            {t('empty.noSearchResults.description')}
+            {t('empty.noChannels.description')}
           </Banner.Description>
         </Banner>
       </Box>
