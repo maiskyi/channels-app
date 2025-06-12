@@ -1,6 +1,6 @@
 import { DTO } from '@network/api';
 
-export const INITIAL_DATA: DTO.SearchChannelsItem[] = Array.from({
+export const INITIAL_DATA: DTO.ChannelItem[] = Array.from({
   length: 3,
 }).map((_, index) => ({
   id: index.toString(),

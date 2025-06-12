@@ -20,6 +20,8 @@ import chevronRight from './assets/chevron-right.svg?raw';
 // import volume1 from './assets/volume-1.svg?raw';
 // import volume2 from './assets/volume-2.svg?raw';
 import x from './assets/x.svg?raw';
+import rocket from './assets/rocket.svg?raw';
+import list from './assets/list.svg?raw';
 // import playIndicator from './assets/play-indicator.svg?raw';
 // import trash2 from './assets/trash-2.svg?raw';
 
@@ -31,6 +33,9 @@ export const ICON = {
   // check: `data:image/svg+xml;utf8,${check}`,
   // 'chevron-left': `data:image/svg+xml;utf8,${chevronLeft}`,
   'chevron-right': `data:image/svg+xml;utf8,${chevronRight}`,
+
+  list: `data:image/svg+xml;utf8,${list}`,
+  rocket: `data:image/svg+xml;utf8,${rocket}`,
 
   search: `data:image/svg+xml;utf8,${search}`,
   send: `data:image/svg+xml;utf8,${send}`,

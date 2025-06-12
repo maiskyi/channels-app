@@ -4,7 +4,7 @@ import { Avatar, Box, Card, Typography } from '@core/uikit';
 import { DTO } from '@network/api';
 
 interface ChannelCardProps {
-  item: DTO.SearchChannelsItem;
+  item: DTO.ChannelItem;
 }
 
 export const ChannelCard: FC<ChannelCardProps> = ({ item }) => {
