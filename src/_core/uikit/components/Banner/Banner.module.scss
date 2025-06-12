@@ -22,6 +22,28 @@
   min-width: 112px;
 }
 
+.icon-wrapper {
+  position: relative;
+
+  .icon {
+    width: 333px;
+    height: 160px;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    ion-icon {
+      font-size: 160px;
+    }
+  }
+
+  + .title,
+  + .description {
+    margin-top: 32px;
+  }
+}
+
 .picture {
   position: relative;
 

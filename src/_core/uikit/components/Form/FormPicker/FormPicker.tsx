@@ -118,7 +118,7 @@ export const FormPicker: FormPickerComponent = ({
               <Header transparent>
                 <Header.Buttons>
                   <Header.Button
-                    icon="close-outline"
+                    icon="x"
                     onClick={handleOnDismiss}
                   ></Header.Button>
                 </Header.Buttons>

@@ -3,8 +3,8 @@ import classNames from 'classnames';
 
 import { Color } from '@ionic/core';
 
-import { IconName } from '../../Icon';
-import { ASSETS } from '../../../constants';
+import { Shade } from '../../Shade';
+import { IconName, Icon } from '../../Icon';
 
 import styles from '../Banner.module.scss';
 
@@ -13,12 +13,12 @@ interface BannerIconProps {
   color?: Color;
 }
 
-export const BannerIcon: FC<BannerIconProps> = () => {
+export const BannerIcon: FC<BannerIconProps> = ({ icon }) => {
   return (
-    <div className={styles.picture}>
-      <div className={styles.shade}></div>
-      <div className={classNames(styles.image, styles.withIcon)}>
-        <img alt="" src={ASSETS.LOGO} />
+    <div className={styles['icon-wrapper']}>
+      <Shade size="sm" />
+      <div className={classNames(styles.icon, styles.withIcon)}>
+        <Icon name={icon} />
       </div>
     </div>
   );

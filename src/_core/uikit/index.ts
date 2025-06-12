@@ -29,7 +29,6 @@ export * from './components/Message';
 export * from './components/Modal';
 export * from './components/Onboarding';
 export * from './components/Page';
-export * from './components/Reader';
 export * from './components/SafeArea';
 export * from './components/Searchbar';
 export * from './components/Shade';
@@ -42,7 +41,6 @@ export * from './components/Tile';
 export * from './components/Typist';
 export * from './components/Typography';
 export * from './components/View';
-export * from './components/Volume';
 
 // Hooks
 export * from './hooks/useBrowser';
