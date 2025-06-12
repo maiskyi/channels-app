@@ -17,6 +17,7 @@ import { useTranslation } from '@core/i18n';
 import { INITIAL_DATA } from './Search.const';
 import { SearchList } from './_partition/SearchList';
 import { SearchPrompt } from './_partition/SearchPrompt';
+import { SearchEmpty } from './_partition/SearchEmpty';
 
 export const Search: FC = () => {
   const [query, setQuery] = useState<string | undefined>();
@@ -60,7 +61,8 @@ export const Search: FC = () => {
           >
             <Grid>
               {!query && <SearchPrompt />}
-              {!!query && channels.length && <SearchList data={channels} />}
+              {!!query && !channels.length && <SearchEmpty />}
+              {!!query && !!channels.length && <SearchList data={channels} />}
             </Grid>
           </SafeArea>
         </Skeleton>

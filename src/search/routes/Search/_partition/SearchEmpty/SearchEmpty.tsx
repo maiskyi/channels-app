@@ -3,7 +3,7 @@ import { FC } from 'react';
 import { useTranslation } from '@core/i18n';
 import { Banner, Box, Grid } from '@core/uikit';
 
-export const SearchPrompt: FC = () => {
+export const SearchEmpty: FC = () => {
   const { t } = useTranslation();
   return (
     <Grid.Row flex="1">
@@ -15,10 +15,10 @@ export const SearchPrompt: FC = () => {
         minHeight="100%"
       >
         <Banner>
-          <Banner.Icon icon="send" />
-          <Banner.Title>{t('empty.searchPrompt.title')}</Banner.Title>
+          <Banner.Icon icon="search" />
+          <Banner.Title>{t('empty.noSearchResults.title')}</Banner.Title>
           <Banner.Description>
-            {t('empty.searchPrompt.description')}
+            {t('empty.noSearchResults.description')}
           </Banner.Description>
         </Banner>
       </Box>

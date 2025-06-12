@@ -7,6 +7,6 @@ export const empty = {
   searchPrompt: {
     description:
       'Enter @username, link, or a keyword. Start typing to discover interesting channels to follow!',
-    title: 'Search for a Telegram channel',
+    title: 'Search for a channel',
   },
 };
