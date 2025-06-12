@@ -14,7 +14,7 @@ export const ChannelSubscribe = memo(function FablesCreate() {
         <Card.Content>
           <Box alignItems="center" display="flex" gap={12}>
             <Box display="flex" flex={0}>
-              <Icon fontSize={28} name="feather" />
+              <Icon fontSize={28} name="send" />
             </Box>
             <Box display="flex" flex={1} flexDirection="column" gap={4}>
               <Typography variant="body-2" weight="semi-bold">

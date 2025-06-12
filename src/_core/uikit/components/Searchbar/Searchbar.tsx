@@ -4,6 +4,8 @@ import { noop } from 'lodash';
 
 import { IonSearchbar } from '@ionic/react';
 
+import { ICON } from '../Icon';
+
 import {
   SearchbarOnChangeParams,
   OnIonChangeHandler,
@@ -38,6 +40,7 @@ export const Searchbar = forwardRef<{}, SearchbarProps>(
         onIonChange={handleOnChange}
         onIonClear={handleOnClear}
         placeholder={placeholder}
+        searchIcon={ICON.search}
         value={value}
       />
     );
