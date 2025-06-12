@@ -40,6 +40,7 @@ export const Search: FC = () => {
       <Header
         subheader={
           <Searchbar
+            autoFocus
             onChange={({ value }) => setQuery(value)}
             placeholder="@username, https://link, etc"
             value={query}
