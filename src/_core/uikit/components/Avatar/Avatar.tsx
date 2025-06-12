@@ -22,7 +22,7 @@ export const Avatar: FC<AvatarProps> = ({
   icon,
   className,
   border,
-  size,
+  size = 48,
 }) => {
   const isLoading = useContextSelector(
     SkeletonContext,
@@ -31,12 +31,11 @@ export const Avatar: FC<AvatarProps> = ({
 
   const content = (() => {
     if (isLoading) return <IonSkeletonText animated />;
-    return (
-      <Fragment>
-        {!!src && <img alt="" src={src} />}
-        {!!icon && <IonIcon icon={ICON[icon]} style={{ fontSize: 24 }} />}
-      </Fragment>
-    );
+    const img = src ? <img alt="" src={src} /> : null;
+    const ico = icon ? (
+      <IonIcon icon={ICON[icon]} style={{ fontSize: 24 }} />
+    ) : null;
+    return <Fragment>{img || ico}</Fragment>;
   })();
 
   return (

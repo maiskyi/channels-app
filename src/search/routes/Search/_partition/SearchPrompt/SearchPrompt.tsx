@@ -16,9 +16,9 @@ export const SearchPrompt: FC = () => {
       >
         <Banner>
           <Banner.Image asset="two-robots" />
-          <Banner.Title>{t('empty.noFables.title')}</Banner.Title>
+          <Banner.Title>{t('empty.searchPrompt.title')}</Banner.Title>
           <Banner.Description>
-            {t('empty.noFables.description')}
+            {t('empty.searchPrompt.description')}
           </Banner.Description>
         </Banner>
       </Box>
