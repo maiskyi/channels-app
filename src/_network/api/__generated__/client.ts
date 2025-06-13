@@ -27,6 +27,7 @@ import { useCallback } from "react";
 
 import type {
   ChannelsSearchParams,
+  GetChannelResponse,
   GetChannelsParams,
   GetChannelsResponse,
   GetSearchChannelsResponse,
@@ -395,7 +396,7 @@ export function useGetChannels<
 }
 
 export const useGetChannelHook = () => {
-  const getChannel = useCustomInstance<void>();
+  const getChannel = useCustomInstance<GetChannelResponse>();
 
   return useCallback(
     (

@@ -19,6 +19,16 @@ export interface GetChannelsResponse {
   data: ChannelItem[];
 }
 
+export interface GetChannelResponse {
+  /** @nullable */
+  title: string | null;
+  username: string;
+  about: string;
+  /** @nullable */
+  photo: string | null;
+  isSubscribed: boolean;
+}
+
 export interface GetSearchChannelsResponse {
   total: number;
   data: ChannelItem[];
