@@ -8,6 +8,7 @@ export * from './components/ApiProvider';
 export {
   useChannelsSearch,
   useGetChannelsInfinite,
+  useGetChannel,
 } from './__generated__/client';
 
 export { DTO };

@@ -1,4 +1,3 @@
-/* eslint-disable no-redeclare */
 // @ts-nocheck
 
 /**
@@ -7,12 +6,7 @@
  * Channels
  * OpenAPI spec version: 1.0.0
  */
-import { useCallback } from 'react';
-
-import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
-
-import { useCustomInstance } from '../hooks/useCustomInstance/index';
-
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import type {
   DataTag,
   DefinedInitialDataOptions,
@@ -27,13 +21,18 @@ import type {
   UseInfiniteQueryResult,
   UseQueryOptions,
   UseQueryResult,
-} from '@tanstack/react-query';
+} from "@tanstack/react-query";
+
+import { useCallback } from "react";
+
 import type {
   ChannelsSearchParams,
   GetChannelsParams,
   GetChannelsResponse,
   GetSearchChannelsResponse,
-} from './client.schemas';
+} from "./client.schemas";
+
+import { useCustomInstance } from "../hooks/useCustomInstance/index";
 
 type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
@@ -44,14 +43,14 @@ export const useGetChannelsHook = () => {
     (
       params?: GetChannelsParams,
       options?: SecondParameter<ReturnType<typeof useCustomInstance>>,
-      signal?: AbortSignal
+      signal?: AbortSignal,
     ) => {
       return getChannels(
-        { method: 'GET', params, signal, url: `/api/channels` },
-        options
+        { url: `/api/channels`, method: "GET", params, signal },
+        options,
       );
     },
-    [getChannels]
+    [getChannels],
   );
 };
 
@@ -62,7 +61,7 @@ export const getGetChannelsQueryKey = (params?: GetChannelsParams) => {
 export const useGetChannelsInfiniteQueryOptions = <
   TData = InfiniteData<
     Awaited<ReturnType<ReturnType<typeof useGetChannelsHook>>>,
-    GetChannelsParams['skip']
+    GetChannelsParams["skip"]
   >,
   TError = unknown,
 >(
@@ -74,11 +73,11 @@ export const useGetChannelsInfiniteQueryOptions = <
         TError,
         TData,
         QueryKey,
-        GetChannelsParams['skip']
+        GetChannelsParams["skip"]
       >
     >;
     request?: SecondParameter<ReturnType<typeof useCustomInstance>>;
-  }
+  },
 ) => {
   const { query: queryOptions, request: requestOptions } = options ?? {};
 
@@ -89,18 +88,18 @@ export const useGetChannelsInfiniteQueryOptions = <
   const queryFn: QueryFunction<
     Awaited<ReturnType<ReturnType<typeof useGetChannelsHook>>>,
     QueryKey,
-    GetChannelsParams['skip']
+    GetChannelsParams["skip"]
   > = ({ signal, pageParam }) =>
     getChannels(
-      { ...params, skip: pageParam || params?.['skip'] },
+      { ...params, skip: pageParam || params?.["skip"] },
       requestOptions,
-      signal
+      signal,
     );
 
   return {
-    cacheTime: 0,
-    queryFn,
     queryKey,
+    queryFn,
+    cacheTime: 0,
     refetchOnWindowFocus: false,
     ...queryOptions,
   } as UseInfiniteQueryOptions<
@@ -108,7 +107,7 @@ export const useGetChannelsInfiniteQueryOptions = <
     TError,
     TData,
     QueryKey,
-    GetChannelsParams['skip']
+    GetChannelsParams["skip"]
   > & { queryKey: DataTag<QueryKey, TData, TError> };
 };
 
@@ -120,7 +119,7 @@ export type GetChannelsInfiniteQueryError = unknown;
 export function useGetChannelsInfinite<
   TData = InfiniteData<
     Awaited<ReturnType<ReturnType<typeof useGetChannelsHook>>>,
-    GetChannelsParams['skip']
+    GetChannelsParams["skip"]
   >,
   TError = unknown,
 >(
@@ -132,7 +131,7 @@ export function useGetChannelsInfinite<
         TError,
         TData,
         QueryKey,
-        GetChannelsParams['skip']
+        GetChannelsParams["skip"]
       >
     > &
       Pick<
@@ -142,18 +141,18 @@ export function useGetChannelsInfinite<
           Awaited<ReturnType<ReturnType<typeof useGetChannelsHook>>>,
           QueryKey
         >,
-        'initialData'
+        "initialData"
       >;
     request?: SecondParameter<ReturnType<typeof useCustomInstance>>;
   },
-  queryClient?: QueryClient
+  queryClient?: QueryClient,
 ): DefinedUseInfiniteQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>;
 };
 export function useGetChannelsInfinite<
   TData = InfiniteData<
     Awaited<ReturnType<ReturnType<typeof useGetChannelsHook>>>,
-    GetChannelsParams['skip']
+    GetChannelsParams["skip"]
   >,
   TError = unknown,
 >(
@@ -165,7 +164,7 @@ export function useGetChannelsInfinite<
         TError,
         TData,
         QueryKey,
-        GetChannelsParams['skip']
+        GetChannelsParams["skip"]
       >
     > &
       Pick<
@@ -175,18 +174,18 @@ export function useGetChannelsInfinite<
           Awaited<ReturnType<ReturnType<typeof useGetChannelsHook>>>,
           QueryKey
         >,
-        'initialData'
+        "initialData"
       >;
     request?: SecondParameter<ReturnType<typeof useCustomInstance>>;
   },
-  queryClient?: QueryClient
+  queryClient?: QueryClient,
 ): UseInfiniteQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>;
 };
 export function useGetChannelsInfinite<
   TData = InfiniteData<
     Awaited<ReturnType<ReturnType<typeof useGetChannelsHook>>>,
-    GetChannelsParams['skip']
+    GetChannelsParams["skip"]
   >,
   TError = unknown,
 >(
@@ -198,12 +197,12 @@ export function useGetChannelsInfinite<
         TError,
         TData,
         QueryKey,
-        GetChannelsParams['skip']
+        GetChannelsParams["skip"]
       >
     >;
     request?: SecondParameter<ReturnType<typeof useCustomInstance>>;
   },
-  queryClient?: QueryClient
+  queryClient?: QueryClient,
 ): UseInfiniteQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>;
 };
@@ -211,7 +210,7 @@ export function useGetChannelsInfinite<
 export function useGetChannelsInfinite<
   TData = InfiniteData<
     Awaited<ReturnType<ReturnType<typeof useGetChannelsHook>>>,
-    GetChannelsParams['skip']
+    GetChannelsParams["skip"]
   >,
   TError = unknown,
 >(
@@ -223,12 +222,12 @@ export function useGetChannelsInfinite<
         TError,
         TData,
         QueryKey,
-        GetChannelsParams['skip']
+        GetChannelsParams["skip"]
       >
     >;
     request?: SecondParameter<ReturnType<typeof useCustomInstance>>;
   },
-  queryClient?: QueryClient
+  queryClient?: QueryClient,
 ): UseInfiniteQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>;
 } {
@@ -236,7 +235,7 @@ export function useGetChannelsInfinite<
 
   const query = useInfiniteQuery(
     queryOptions,
-    queryClient
+    queryClient,
   ) as UseInfiniteQueryResult<TData, TError> & {
     queryKey: DataTag<QueryKey, TData, TError>;
   };
@@ -260,7 +259,7 @@ export const useGetChannelsQueryOptions = <
       >
     >;
     request?: SecondParameter<ReturnType<typeof useCustomInstance>>;
-  }
+  },
 ) => {
   const { query: queryOptions, request: requestOptions } = options ?? {};
 
@@ -273,9 +272,9 @@ export const useGetChannelsQueryOptions = <
   > = ({ signal }) => getChannels(params, requestOptions, signal);
 
   return {
-    cacheTime: 0,
-    queryFn,
     queryKey,
+    queryFn,
+    cacheTime: 0,
     refetchOnWindowFocus: false,
     ...queryOptions,
   } as UseQueryOptions<
@@ -309,11 +308,11 @@ export function useGetChannels<
           TError,
           Awaited<ReturnType<ReturnType<typeof useGetChannelsHook>>>
         >,
-        'initialData'
+        "initialData"
       >;
     request?: SecondParameter<ReturnType<typeof useCustomInstance>>;
   },
-  queryClient?: QueryClient
+  queryClient?: QueryClient,
 ): DefinedUseQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>;
 };
@@ -336,11 +335,11 @@ export function useGetChannels<
           TError,
           Awaited<ReturnType<ReturnType<typeof useGetChannelsHook>>>
         >,
-        'initialData'
+        "initialData"
       >;
     request?: SecondParameter<ReturnType<typeof useCustomInstance>>;
   },
-  queryClient?: QueryClient
+  queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>;
 };
@@ -359,7 +358,7 @@ export function useGetChannels<
     >;
     request?: SecondParameter<ReturnType<typeof useCustomInstance>>;
   },
-  queryClient?: QueryClient
+  queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>;
 };
@@ -379,11 +378,345 @@ export function useGetChannels<
     >;
     request?: SecondParameter<ReturnType<typeof useCustomInstance>>;
   },
-  queryClient?: QueryClient
+  queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>;
 } {
   const queryOptions = useGetChannelsQueryOptions(params, options);
+
+  const query = useQuery(queryOptions, queryClient) as UseQueryResult<
+    TData,
+    TError
+  > & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey;
+
+  return query;
+}
+
+export const useGetChannelHook = () => {
+  const getChannel = useCustomInstance<void>();
+
+  return useCallback(
+    (
+      username: string,
+      options?: SecondParameter<ReturnType<typeof useCustomInstance>>,
+      signal?: AbortSignal,
+    ) => {
+      return getChannel(
+        { url: `/api/channels/${username}`, method: "GET", signal },
+        options,
+      );
+    },
+    [getChannel],
+  );
+};
+
+export const getGetChannelQueryKey = (username: string) => {
+  return [`/api/channels/${username}`] as const;
+};
+
+export const useGetChannelInfiniteQueryOptions = <
+  TData = InfiniteData<
+    Awaited<ReturnType<ReturnType<typeof useGetChannelHook>>>
+  >,
+  TError = unknown,
+>(
+  username: string,
+  options?: {
+    query?: Partial<
+      UseInfiniteQueryOptions<
+        Awaited<ReturnType<ReturnType<typeof useGetChannelHook>>>,
+        TError,
+        TData
+      >
+    >;
+    request?: SecondParameter<ReturnType<typeof useCustomInstance>>;
+  },
+) => {
+  const { query: queryOptions, request: requestOptions } = options ?? {};
+
+  const queryKey = queryOptions?.queryKey ?? getGetChannelQueryKey(username);
+
+  const getChannel = useGetChannelHook();
+
+  const queryFn: QueryFunction<
+    Awaited<ReturnType<ReturnType<typeof useGetChannelHook>>>
+  > = ({ signal }) => getChannel(username, requestOptions, signal);
+
+  return {
+    queryKey,
+    queryFn,
+    enabled: !!username,
+    cacheTime: 0,
+    refetchOnWindowFocus: false,
+    ...queryOptions,
+  } as UseInfiniteQueryOptions<
+    Awaited<ReturnType<ReturnType<typeof useGetChannelHook>>>,
+    TError,
+    TData
+  > & { queryKey: DataTag<QueryKey, TData, TError> };
+};
+
+export type GetChannelInfiniteQueryResult = NonNullable<
+  Awaited<ReturnType<ReturnType<typeof useGetChannelHook>>>
+>;
+export type GetChannelInfiniteQueryError = unknown;
+
+export function useGetChannelInfinite<
+  TData = InfiniteData<
+    Awaited<ReturnType<ReturnType<typeof useGetChannelHook>>>
+  >,
+  TError = unknown,
+>(
+  username: string,
+  options: {
+    query: Partial<
+      UseInfiniteQueryOptions<
+        Awaited<ReturnType<ReturnType<typeof useGetChannelHook>>>,
+        TError,
+        TData
+      >
+    > &
+      Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<ReturnType<typeof useGetChannelHook>>>,
+          TError,
+          Awaited<ReturnType<ReturnType<typeof useGetChannelHook>>>
+        >,
+        "initialData"
+      >;
+    request?: SecondParameter<ReturnType<typeof useCustomInstance>>;
+  },
+  queryClient?: QueryClient,
+): DefinedUseInfiniteQueryResult<TData, TError> & {
+  queryKey: DataTag<QueryKey, TData, TError>;
+};
+export function useGetChannelInfinite<
+  TData = InfiniteData<
+    Awaited<ReturnType<ReturnType<typeof useGetChannelHook>>>
+  >,
+  TError = unknown,
+>(
+  username: string,
+  options?: {
+    query?: Partial<
+      UseInfiniteQueryOptions<
+        Awaited<ReturnType<ReturnType<typeof useGetChannelHook>>>,
+        TError,
+        TData
+      >
+    > &
+      Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<ReturnType<typeof useGetChannelHook>>>,
+          TError,
+          Awaited<ReturnType<ReturnType<typeof useGetChannelHook>>>
+        >,
+        "initialData"
+      >;
+    request?: SecondParameter<ReturnType<typeof useCustomInstance>>;
+  },
+  queryClient?: QueryClient,
+): UseInfiniteQueryResult<TData, TError> & {
+  queryKey: DataTag<QueryKey, TData, TError>;
+};
+export function useGetChannelInfinite<
+  TData = InfiniteData<
+    Awaited<ReturnType<ReturnType<typeof useGetChannelHook>>>
+  >,
+  TError = unknown,
+>(
+  username: string,
+  options?: {
+    query?: Partial<
+      UseInfiniteQueryOptions<
+        Awaited<ReturnType<ReturnType<typeof useGetChannelHook>>>,
+        TError,
+        TData
+      >
+    >;
+    request?: SecondParameter<ReturnType<typeof useCustomInstance>>;
+  },
+  queryClient?: QueryClient,
+): UseInfiniteQueryResult<TData, TError> & {
+  queryKey: DataTag<QueryKey, TData, TError>;
+};
+
+export function useGetChannelInfinite<
+  TData = InfiniteData<
+    Awaited<ReturnType<ReturnType<typeof useGetChannelHook>>>
+  >,
+  TError = unknown,
+>(
+  username: string,
+  options?: {
+    query?: Partial<
+      UseInfiniteQueryOptions<
+        Awaited<ReturnType<ReturnType<typeof useGetChannelHook>>>,
+        TError,
+        TData
+      >
+    >;
+    request?: SecondParameter<ReturnType<typeof useCustomInstance>>;
+  },
+  queryClient?: QueryClient,
+): UseInfiniteQueryResult<TData, TError> & {
+  queryKey: DataTag<QueryKey, TData, TError>;
+} {
+  const queryOptions = useGetChannelInfiniteQueryOptions(username, options);
+
+  const query = useInfiniteQuery(
+    queryOptions,
+    queryClient,
+  ) as UseInfiniteQueryResult<TData, TError> & {
+    queryKey: DataTag<QueryKey, TData, TError>;
+  };
+
+  query.queryKey = queryOptions.queryKey;
+
+  return query;
+}
+
+export const useGetChannelQueryOptions = <
+  TData = Awaited<ReturnType<ReturnType<typeof useGetChannelHook>>>,
+  TError = unknown,
+>(
+  username: string,
+  options?: {
+    query?: Partial<
+      UseQueryOptions<
+        Awaited<ReturnType<ReturnType<typeof useGetChannelHook>>>,
+        TError,
+        TData
+      >
+    >;
+    request?: SecondParameter<ReturnType<typeof useCustomInstance>>;
+  },
+) => {
+  const { query: queryOptions, request: requestOptions } = options ?? {};
+
+  const queryKey = queryOptions?.queryKey ?? getGetChannelQueryKey(username);
+
+  const getChannel = useGetChannelHook();
+
+  const queryFn: QueryFunction<
+    Awaited<ReturnType<ReturnType<typeof useGetChannelHook>>>
+  > = ({ signal }) => getChannel(username, requestOptions, signal);
+
+  return {
+    queryKey,
+    queryFn,
+    enabled: !!username,
+    cacheTime: 0,
+    refetchOnWindowFocus: false,
+    ...queryOptions,
+  } as UseQueryOptions<
+    Awaited<ReturnType<ReturnType<typeof useGetChannelHook>>>,
+    TError,
+    TData
+  > & { queryKey: DataTag<QueryKey, TData, TError> };
+};
+
+export type GetChannelQueryResult = NonNullable<
+  Awaited<ReturnType<ReturnType<typeof useGetChannelHook>>>
+>;
+export type GetChannelQueryError = unknown;
+
+export function useGetChannel<
+  TData = Awaited<ReturnType<ReturnType<typeof useGetChannelHook>>>,
+  TError = unknown,
+>(
+  username: string,
+  options: {
+    query: Partial<
+      UseQueryOptions<
+        Awaited<ReturnType<ReturnType<typeof useGetChannelHook>>>,
+        TError,
+        TData
+      >
+    > &
+      Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<ReturnType<typeof useGetChannelHook>>>,
+          TError,
+          Awaited<ReturnType<ReturnType<typeof useGetChannelHook>>>
+        >,
+        "initialData"
+      >;
+    request?: SecondParameter<ReturnType<typeof useCustomInstance>>;
+  },
+  queryClient?: QueryClient,
+): DefinedUseQueryResult<TData, TError> & {
+  queryKey: DataTag<QueryKey, TData, TError>;
+};
+export function useGetChannel<
+  TData = Awaited<ReturnType<ReturnType<typeof useGetChannelHook>>>,
+  TError = unknown,
+>(
+  username: string,
+  options?: {
+    query?: Partial<
+      UseQueryOptions<
+        Awaited<ReturnType<ReturnType<typeof useGetChannelHook>>>,
+        TError,
+        TData
+      >
+    > &
+      Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<ReturnType<typeof useGetChannelHook>>>,
+          TError,
+          Awaited<ReturnType<ReturnType<typeof useGetChannelHook>>>
+        >,
+        "initialData"
+      >;
+    request?: SecondParameter<ReturnType<typeof useCustomInstance>>;
+  },
+  queryClient?: QueryClient,
+): UseQueryResult<TData, TError> & {
+  queryKey: DataTag<QueryKey, TData, TError>;
+};
+export function useGetChannel<
+  TData = Awaited<ReturnType<ReturnType<typeof useGetChannelHook>>>,
+  TError = unknown,
+>(
+  username: string,
+  options?: {
+    query?: Partial<
+      UseQueryOptions<
+        Awaited<ReturnType<ReturnType<typeof useGetChannelHook>>>,
+        TError,
+        TData
+      >
+    >;
+    request?: SecondParameter<ReturnType<typeof useCustomInstance>>;
+  },
+  queryClient?: QueryClient,
+): UseQueryResult<TData, TError> & {
+  queryKey: DataTag<QueryKey, TData, TError>;
+};
+
+export function useGetChannel<
+  TData = Awaited<ReturnType<ReturnType<typeof useGetChannelHook>>>,
+  TError = unknown,
+>(
+  username: string,
+  options?: {
+    query?: Partial<
+      UseQueryOptions<
+        Awaited<ReturnType<ReturnType<typeof useGetChannelHook>>>,
+        TError,
+        TData
+      >
+    >;
+    request?: SecondParameter<ReturnType<typeof useCustomInstance>>;
+  },
+  queryClient?: QueryClient,
+): UseQueryResult<TData, TError> & {
+  queryKey: DataTag<QueryKey, TData, TError>;
+} {
+  const queryOptions = useGetChannelQueryOptions(username, options);
 
   const query = useQuery(queryOptions, queryClient) as UseQueryResult<
     TData,
@@ -402,14 +735,14 @@ export const useChannelsSearchHook = () => {
     (
       params: ChannelsSearchParams,
       options?: SecondParameter<ReturnType<typeof useCustomInstance>>,
-      signal?: AbortSignal
+      signal?: AbortSignal,
     ) => {
       return channelsSearch(
-        { method: 'GET', params, signal, url: `/api/search/channels` },
-        options
+        { url: `/api/search/channels`, method: "GET", params, signal },
+        options,
       );
     },
-    [channelsSearch]
+    [channelsSearch],
   );
 };
 
@@ -420,7 +753,7 @@ export const getChannelsSearchQueryKey = (params: ChannelsSearchParams) => {
 export const useChannelsSearchInfiniteQueryOptions = <
   TData = InfiniteData<
     Awaited<ReturnType<ReturnType<typeof useChannelsSearchHook>>>,
-    ChannelsSearchParams['skip']
+    ChannelsSearchParams["skip"]
   >,
   TError = unknown,
 >(
@@ -432,11 +765,11 @@ export const useChannelsSearchInfiniteQueryOptions = <
         TError,
         TData,
         QueryKey,
-        ChannelsSearchParams['skip']
+        ChannelsSearchParams["skip"]
       >
     >;
     request?: SecondParameter<ReturnType<typeof useCustomInstance>>;
-  }
+  },
 ) => {
   const { query: queryOptions, request: requestOptions } = options ?? {};
 
@@ -447,18 +780,18 @@ export const useChannelsSearchInfiniteQueryOptions = <
   const queryFn: QueryFunction<
     Awaited<ReturnType<ReturnType<typeof useChannelsSearchHook>>>,
     QueryKey,
-    ChannelsSearchParams['skip']
+    ChannelsSearchParams["skip"]
   > = ({ signal, pageParam }) =>
     channelsSearch(
-      { ...params, skip: pageParam || params?.['skip'] },
+      { ...params, skip: pageParam || params?.["skip"] },
       requestOptions,
-      signal
+      signal,
     );
 
   return {
-    cacheTime: 0,
-    queryFn,
     queryKey,
+    queryFn,
+    cacheTime: 0,
     refetchOnWindowFocus: false,
     ...queryOptions,
   } as UseInfiniteQueryOptions<
@@ -466,7 +799,7 @@ export const useChannelsSearchInfiniteQueryOptions = <
     TError,
     TData,
     QueryKey,
-    ChannelsSearchParams['skip']
+    ChannelsSearchParams["skip"]
   > & { queryKey: DataTag<QueryKey, TData, TError> };
 };
 
@@ -478,7 +811,7 @@ export type ChannelsSearchInfiniteQueryError = unknown;
 export function useChannelsSearchInfinite<
   TData = InfiniteData<
     Awaited<ReturnType<ReturnType<typeof useChannelsSearchHook>>>,
-    ChannelsSearchParams['skip']
+    ChannelsSearchParams["skip"]
   >,
   TError = unknown,
 >(
@@ -490,7 +823,7 @@ export function useChannelsSearchInfinite<
         TError,
         TData,
         QueryKey,
-        ChannelsSearchParams['skip']
+        ChannelsSearchParams["skip"]
       >
     > &
       Pick<
@@ -500,18 +833,18 @@ export function useChannelsSearchInfinite<
           Awaited<ReturnType<ReturnType<typeof useChannelsSearchHook>>>,
           QueryKey
         >,
-        'initialData'
+        "initialData"
       >;
     request?: SecondParameter<ReturnType<typeof useCustomInstance>>;
   },
-  queryClient?: QueryClient
+  queryClient?: QueryClient,
 ): DefinedUseInfiniteQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>;
 };
 export function useChannelsSearchInfinite<
   TData = InfiniteData<
     Awaited<ReturnType<ReturnType<typeof useChannelsSearchHook>>>,
-    ChannelsSearchParams['skip']
+    ChannelsSearchParams["skip"]
   >,
   TError = unknown,
 >(
@@ -523,7 +856,7 @@ export function useChannelsSearchInfinite<
         TError,
         TData,
         QueryKey,
-        ChannelsSearchParams['skip']
+        ChannelsSearchParams["skip"]
       >
     > &
       Pick<
@@ -533,18 +866,18 @@ export function useChannelsSearchInfinite<
           Awaited<ReturnType<ReturnType<typeof useChannelsSearchHook>>>,
           QueryKey
         >,
-        'initialData'
+        "initialData"
       >;
     request?: SecondParameter<ReturnType<typeof useCustomInstance>>;
   },
-  queryClient?: QueryClient
+  queryClient?: QueryClient,
 ): UseInfiniteQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>;
 };
 export function useChannelsSearchInfinite<
   TData = InfiniteData<
     Awaited<ReturnType<ReturnType<typeof useChannelsSearchHook>>>,
-    ChannelsSearchParams['skip']
+    ChannelsSearchParams["skip"]
   >,
   TError = unknown,
 >(
@@ -556,12 +889,12 @@ export function useChannelsSearchInfinite<
         TError,
         TData,
         QueryKey,
-        ChannelsSearchParams['skip']
+        ChannelsSearchParams["skip"]
       >
     >;
     request?: SecondParameter<ReturnType<typeof useCustomInstance>>;
   },
-  queryClient?: QueryClient
+  queryClient?: QueryClient,
 ): UseInfiniteQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>;
 };
@@ -569,7 +902,7 @@ export function useChannelsSearchInfinite<
 export function useChannelsSearchInfinite<
   TData = InfiniteData<
     Awaited<ReturnType<ReturnType<typeof useChannelsSearchHook>>>,
-    ChannelsSearchParams['skip']
+    ChannelsSearchParams["skip"]
   >,
   TError = unknown,
 >(
@@ -581,12 +914,12 @@ export function useChannelsSearchInfinite<
         TError,
         TData,
         QueryKey,
-        ChannelsSearchParams['skip']
+        ChannelsSearchParams["skip"]
       >
     >;
     request?: SecondParameter<ReturnType<typeof useCustomInstance>>;
   },
-  queryClient?: QueryClient
+  queryClient?: QueryClient,
 ): UseInfiniteQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>;
 } {
@@ -594,7 +927,7 @@ export function useChannelsSearchInfinite<
 
   const query = useInfiniteQuery(
     queryOptions,
-    queryClient
+    queryClient,
   ) as UseInfiniteQueryResult<TData, TError> & {
     queryKey: DataTag<QueryKey, TData, TError>;
   };
@@ -618,7 +951,7 @@ export const useChannelsSearchQueryOptions = <
       >
     >;
     request?: SecondParameter<ReturnType<typeof useCustomInstance>>;
-  }
+  },
 ) => {
   const { query: queryOptions, request: requestOptions } = options ?? {};
 
@@ -631,9 +964,9 @@ export const useChannelsSearchQueryOptions = <
   > = ({ signal }) => channelsSearch(params, requestOptions, signal);
 
   return {
-    cacheTime: 0,
-    queryFn,
     queryKey,
+    queryFn,
+    cacheTime: 0,
     refetchOnWindowFocus: false,
     ...queryOptions,
   } as UseQueryOptions<
@@ -667,11 +1000,11 @@ export function useChannelsSearch<
           TError,
           Awaited<ReturnType<ReturnType<typeof useChannelsSearchHook>>>
         >,
-        'initialData'
+        "initialData"
       >;
     request?: SecondParameter<ReturnType<typeof useCustomInstance>>;
   },
-  queryClient?: QueryClient
+  queryClient?: QueryClient,
 ): DefinedUseQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>;
 };
@@ -694,11 +1027,11 @@ export function useChannelsSearch<
           TError,
           Awaited<ReturnType<ReturnType<typeof useChannelsSearchHook>>>
         >,
-        'initialData'
+        "initialData"
       >;
     request?: SecondParameter<ReturnType<typeof useCustomInstance>>;
   },
-  queryClient?: QueryClient
+  queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>;
 };
@@ -717,7 +1050,7 @@ export function useChannelsSearch<
     >;
     request?: SecondParameter<ReturnType<typeof useCustomInstance>>;
   },
-  queryClient?: QueryClient
+  queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>;
 };
@@ -737,7 +1070,7 @@ export function useChannelsSearch<
     >;
     request?: SecondParameter<ReturnType<typeof useCustomInstance>>;
   },
-  queryClient?: QueryClient
+  queryClient?: QueryClient,
 ): UseQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>;
 } {

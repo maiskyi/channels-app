@@ -18,7 +18,7 @@ export const SearchList: FC<SearchListProps> = ({ data }) => {
           <Grid.Row flex="0 0 auto" key={item.id}>
             <Grid.Cell>
               <Link
-                params={{ id: item.id }}
+                params={{ id: item.userName }}
                 pathname={RoutePath.Channel}
                 unstyled
               >
