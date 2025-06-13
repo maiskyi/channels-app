@@ -1,7 +1,9 @@
 import { FC } from 'react';
 
 import {
+  Box,
   Button,
+  Card,
   Content,
   Footer,
   Grid,
@@ -9,6 +11,7 @@ import {
   Page,
   SafeArea,
   Skeleton,
+  Typography,
 } from '@core/uikit';
 import { RoutePath } from '@bootstrap/constants';
 import { useGetChannel } from '@network/api';
@@ -42,13 +45,25 @@ export const Channel: FC = () => {
                   <ChannelCard {...data} />
                 </Grid.Cell>
               </Grid.Row>
-              {/* <Grid.Row>
+              <Grid.Row>
                 <Grid.Cell>
-                  {!hasActiveSubscription && <ProfilePlan />}
-                  <ProfileMenu menu={menu} />
-                  {!user?.isAnonymous && <ProfileActions />}
+                  <Box marginTop={32}>
+                    <Card>
+                      <Card.Content>
+                        <Box display="flex" flexDirection="column" gap={4}>
+                          <Typography weight="bold">About</Typography>
+                          <Typography
+                            preLine
+                            truncate={isLoading ? 3 : undefined}
+                          >
+                            {data.about}
+                          </Typography>
+                        </Box>
+                      </Card.Content>
+                    </Card>
+                  </Box>
                 </Grid.Cell>
-              </Grid.Row> */}
+              </Grid.Row>
             </Grid>
           </SafeArea>
         </Content>
