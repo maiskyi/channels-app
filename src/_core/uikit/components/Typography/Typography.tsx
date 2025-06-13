@@ -1,4 +1,4 @@
-import { createElement, FC, PropsWithChildren } from 'react';
+import { createElement, FC, Fragment, PropsWithChildren } from 'react';
 import classNames from 'classnames';
 import { useContextSelector } from 'use-context-selector';
 
@@ -18,6 +18,8 @@ export type TypographyProps = PropsWithChildren<{
   className?: string;
   muted?: boolean;
   color?: Color;
+  truncate?: number;
+  preLine?: boolean;
 }>;
 
 export const Typography: FC<TypographyProps> = ({
@@ -27,6 +29,8 @@ export const Typography: FC<TypographyProps> = ({
   color,
   variant = 'body-1',
   weight = 'regular',
+  truncate,
+  preLine,
 }) => {
   const isLoading = useContextSelector(
     SkeletonContext,
@@ -35,10 +39,18 @@ export const Typography: FC<TypographyProps> = ({
 
   if (isLoading) {
     return (
-      <IonSkeletonText
-        animated
-        className={classNames(styles.skeleton, styles[variant])}
-      />
+      <Fragment>
+        {Array.from({ length: truncate | 1 }).map((_, index) => {
+          return (
+            <IonSkeletonText
+              animated
+              className={classNames(styles.skeleton, styles[variant])}
+              key={index}
+              style={{ width: index === 0 ? '100%' : '80%' }}
+            />
+          );
+        })}
+      </Fragment>
     );
   }
 
@@ -52,6 +64,7 @@ export const Typography: FC<TypographyProps> = ({
         styles[color],
         {
           [styles.muted]: muted,
+          [styles['pre-line']]: preLine,
         },
         className
       ),

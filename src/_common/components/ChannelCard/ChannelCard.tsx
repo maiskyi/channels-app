@@ -13,7 +13,7 @@ export const ChannelCard: FC<ChannelCardProps> = ({ item }) => {
   return (
     <Card>
       <Card.Content>
-        <Box alignItems="center" display="flex" gap={16}>
+        <Box display="flex" gap={16}>
           <Avatar border={!photo} icon="send" src={photo} />
           <Box display="flex" flex={1} flexDirection="column">
             <Typography>{title}</Typography>
