@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, Fragment } from 'react';
 
 import {
   Box,
@@ -46,55 +46,63 @@ export const Channel: FC = () => {
                   <ChannelInfo {...data} />
                 </Grid.Cell>
               </Grid.Row>
-              <Grid.Row>
-                <Grid.Cell>
-                  <Box marginTop={32} paddingInline={20}>
-                    <Typography variant="h4" weight="semi-bold">
-                      {t('forms.about')}
-                    </Typography>
-                  </Box>
-                </Grid.Cell>
-              </Grid.Row>
-              <Grid.Row>
-                <Grid.Cell>
-                  <Card>
-                    <Card.Content>
-                      <Box display="flex" flexDirection="column" gap={4}>
-                        <Typography
-                          preLine
-                          truncate={isLoading ? 3 : undefined}
-                        >
-                          {data.about}
+              {!!data.about && (
+                <Fragment>
+                  <Grid.Row>
+                    <Grid.Cell>
+                      <Box marginTop={32} paddingInline={20}>
+                        <Typography variant="h4" weight="semi-bold">
+                          {t('forms.about')}
                         </Typography>
                       </Box>
-                    </Card.Content>
-                  </Card>
-                </Grid.Cell>
-              </Grid.Row>
-              <Grid.Row>
-                <Grid.Cell>
-                  <Box marginTop={48} paddingInline={20}>
-                    <Typography variant="h4" weight="semi-bold">
-                      {t('forms.otherRecommendedChannels')}
-                    </Typography>
-                  </Box>
-                </Grid.Cell>
-              </Grid.Row>
-              {data.recommendations.map((item) => {
-                return (
-                  <Grid.Row key={item.id}>
-                    <Grid.Cell>
-                      <Link
-                        params={{ id: item.userName }}
-                        pathname={RoutePath.Channel}
-                        unstyled
-                      >
-                        <ChannelCard item={item} />
-                      </Link>
                     </Grid.Cell>
                   </Grid.Row>
-                );
-              })}
+                  <Grid.Row>
+                    <Grid.Cell>
+                      <Card>
+                        <Card.Content>
+                          <Box display="flex" flexDirection="column" gap={4}>
+                            <Typography
+                              preLine
+                              truncate={isLoading ? 3 : undefined}
+                            >
+                              {data.about}
+                            </Typography>
+                          </Box>
+                        </Card.Content>
+                      </Card>
+                    </Grid.Cell>
+                  </Grid.Row>
+                </Fragment>
+              )}
+              {!!data.recommendations.length && (
+                <Fragment>
+                  <Grid.Row>
+                    <Grid.Cell>
+                      <Box marginTop={48} paddingInline={20}>
+                        <Typography variant="h4" weight="semi-bold">
+                          {t('forms.otherRecommendedChannels')}
+                        </Typography>
+                      </Box>
+                    </Grid.Cell>
+                  </Grid.Row>
+                  {data.recommendations.map((item) => {
+                    return (
+                      <Grid.Row key={item.id}>
+                        <Grid.Cell>
+                          <Link
+                            params={{ id: item.userName }}
+                            pathname={RoutePath.Channel}
+                            unstyled
+                          >
+                            <ChannelCard item={item} />
+                          </Link>
+                        </Grid.Cell>
+                      </Grid.Row>
+                    );
+                  })}
+                </Fragment>
+              )}
             </Grid>
           </SafeArea>
         </Content>
