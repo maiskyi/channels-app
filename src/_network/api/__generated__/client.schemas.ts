@@ -27,6 +27,7 @@ export interface GetChannelResponse {
   /** @nullable */
   photo: string | null;
   isSubscribed: boolean;
+  recommendations: ChannelItem[];
 }
 
 export interface GetSearchChannelsResponse {

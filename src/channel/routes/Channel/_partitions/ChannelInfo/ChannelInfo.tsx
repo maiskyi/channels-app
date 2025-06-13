@@ -3,7 +3,7 @@ import { memo } from 'react';
 import { Box, Avatar, Typography } from '@core/uikit';
 import { DTO } from '@network/api';
 
-export const ChannelCard = memo<DTO.GetChannelResponse>(
+export const ChannelInfo = memo<DTO.GetChannelResponse>(
   function ProfileUserCard({ title, username, photo }) {
     return (
       <Box paddingInline={20} paddingTop={130} position="relative">
