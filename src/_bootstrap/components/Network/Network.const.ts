@@ -1,0 +1,2 @@
+export const DEV =
+  'query_id=AAGzCX8WAAAAALMJfxZeM_Hf&user=%7B%22id%22%3A377424307%2C%22first_name%22%3A%22Andrii%22%2C%22last_name%22%3A%22Maiskyi%22%2C%22username%22%3A%22majskiy%22%2C%22language_code%22%3A%22en%22%2C%22allows_write_to_pm%22%3Atrue%2C%22photo_url%22%3A%22https%3A%5C%2F%5C%2Ft.me%5C%2Fi%5C%2Fuserpic%5C%2F320%5C%2FtRIdIUOmq8tYvDDZU-KxhMl30S8TKfNCSXtkY1tVAow.svg%22%7D&auth_date=1750285714&signature=aBpJNA7zdWqglQzcexVe-JOBhlYkI7QmgGGP26UqLZzDGJ3fv9Hy4EbkrrHBwxLGmqJDaqp8X9m5ztJXKakeBg&hash=6f1cd0587dc250c0d362805d6dd8f9325db53cf9b26586958802a997d8685cd0';

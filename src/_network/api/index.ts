@@ -9,6 +9,7 @@ export {
   useChannelsSearch,
   useGetChannelsInfinite,
   useGetChannel,
+  useSubscribeToChannel,
 } from './__generated__/client';
 
 export { DTO };

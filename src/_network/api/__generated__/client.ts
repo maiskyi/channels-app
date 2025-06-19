@@ -7,7 +7,7 @@
  */
 import { useCallback } from 'react';
 
-import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useMutation, useQuery } from '@tanstack/react-query';
 
 import { useCustomInstance } from '../hooks/useCustomInstance/index';
 
@@ -17,12 +17,15 @@ import type {
   DefinedUseInfiniteQueryResult,
   DefinedUseQueryResult,
   InfiniteData,
+  MutationFunction,
   QueryClient,
   QueryFunction,
   QueryKey,
   UndefinedInitialDataOptions,
   UseInfiniteQueryOptions,
   UseInfiniteQueryResult,
+  UseMutationOptions,
+  UseMutationResult,
   UseQueryOptions,
   UseQueryResult,
 } from '@tanstack/react-query';
@@ -32,9 +35,288 @@ import type {
   GetChannelsParams,
   GetChannelsResponse,
   GetSearchChannelsResponse,
+  SetChatMenuButtonRequest,
+  SetMyCommandsRequest,
+  SetMyNameRequest,
 } from './client.schemas';
 
 type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
+
+export const useSetMyCommandsHook = () => {
+  const setMyCommands = useCustomInstance<boolean>();
+
+  return useCallback(
+    (
+      setMyCommandsRequest: SetMyCommandsRequest,
+      options?: SecondParameter<ReturnType<typeof useCustomInstance>>,
+      signal?: AbortSignal
+    ) => {
+      return setMyCommands(
+        {
+          data: setMyCommandsRequest,
+          headers: { 'Content-Type': 'application/json' },
+          method: 'POST',
+          signal,
+          url: `/setMyCommands`,
+        },
+        options
+      );
+    },
+    [setMyCommands]
+  );
+};
+
+export const useSetMyCommandsMutationOptions = <
+  TError = unknown,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<ReturnType<typeof useSetMyCommandsHook>>>,
+    TError,
+    { data: SetMyCommandsRequest },
+    TContext
+  >;
+  request?: SecondParameter<ReturnType<typeof useCustomInstance>>;
+}): UseMutationOptions<
+  Awaited<ReturnType<ReturnType<typeof useSetMyCommandsHook>>>,
+  TError,
+  { data: SetMyCommandsRequest },
+  TContext
+> => {
+  const mutationKey = ['setMyCommands'];
+  const { mutation: mutationOptions, request: requestOptions } = options
+    ? options.mutation &&
+      'mutationKey' in options.mutation &&
+      options.mutation.mutationKey
+      ? options
+      : { ...options, mutation: { ...options.mutation, mutationKey } }
+    : { mutation: { mutationKey }, request: undefined };
+
+  const setMyCommands = useSetMyCommandsHook();
+
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<ReturnType<typeof useSetMyCommandsHook>>>,
+    { data: SetMyCommandsRequest }
+  > = (props) => {
+    const { data } = props ?? {};
+
+    return setMyCommands(data, requestOptions);
+  };
+
+  return { mutationFn, ...mutationOptions };
+};
+
+export type SetMyCommandsMutationResult = NonNullable<
+  Awaited<ReturnType<ReturnType<typeof useSetMyCommandsHook>>>
+>;
+export type SetMyCommandsMutationBody = SetMyCommandsRequest;
+export type SetMyCommandsMutationError = unknown;
+
+export const useSetMyCommands = <TError = unknown, TContext = unknown>(
+  options?: {
+    mutation?: UseMutationOptions<
+      Awaited<ReturnType<ReturnType<typeof useSetMyCommandsHook>>>,
+      TError,
+      { data: SetMyCommandsRequest },
+      TContext
+    >;
+    request?: SecondParameter<ReturnType<typeof useCustomInstance>>;
+  },
+  queryClient?: QueryClient
+): UseMutationResult<
+  Awaited<ReturnType<ReturnType<typeof useSetMyCommandsHook>>>,
+  TError,
+  { data: SetMyCommandsRequest },
+  TContext
+> => {
+  const mutationOptions = useSetMyCommandsMutationOptions(options);
+
+  return useMutation(mutationOptions, queryClient);
+};
+
+export const useSetMyNameHook = () => {
+  const setMyName = useCustomInstance<boolean>();
+
+  return useCallback(
+    (
+      setMyNameRequest: SetMyNameRequest,
+      options?: SecondParameter<ReturnType<typeof useCustomInstance>>,
+      signal?: AbortSignal
+    ) => {
+      return setMyName(
+        {
+          data: setMyNameRequest,
+          headers: { 'Content-Type': 'application/json' },
+          method: 'POST',
+          signal,
+          url: `/setMyName`,
+        },
+        options
+      );
+    },
+    [setMyName]
+  );
+};
+
+export const useSetMyNameMutationOptions = <
+  TError = unknown,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<ReturnType<typeof useSetMyNameHook>>>,
+    TError,
+    { data: SetMyNameRequest },
+    TContext
+  >;
+  request?: SecondParameter<ReturnType<typeof useCustomInstance>>;
+}): UseMutationOptions<
+  Awaited<ReturnType<ReturnType<typeof useSetMyNameHook>>>,
+  TError,
+  { data: SetMyNameRequest },
+  TContext
+> => {
+  const mutationKey = ['setMyName'];
+  const { mutation: mutationOptions, request: requestOptions } = options
+    ? options.mutation &&
+      'mutationKey' in options.mutation &&
+      options.mutation.mutationKey
+      ? options
+      : { ...options, mutation: { ...options.mutation, mutationKey } }
+    : { mutation: { mutationKey }, request: undefined };
+
+  const setMyName = useSetMyNameHook();
+
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<ReturnType<typeof useSetMyNameHook>>>,
+    { data: SetMyNameRequest }
+  > = (props) => {
+    const { data } = props ?? {};
+
+    return setMyName(data, requestOptions);
+  };
+
+  return { mutationFn, ...mutationOptions };
+};
+
+export type SetMyNameMutationResult = NonNullable<
+  Awaited<ReturnType<ReturnType<typeof useSetMyNameHook>>>
+>;
+export type SetMyNameMutationBody = SetMyNameRequest;
+export type SetMyNameMutationError = unknown;
+
+export const useSetMyName = <TError = unknown, TContext = unknown>(
+  options?: {
+    mutation?: UseMutationOptions<
+      Awaited<ReturnType<ReturnType<typeof useSetMyNameHook>>>,
+      TError,
+      { data: SetMyNameRequest },
+      TContext
+    >;
+    request?: SecondParameter<ReturnType<typeof useCustomInstance>>;
+  },
+  queryClient?: QueryClient
+): UseMutationResult<
+  Awaited<ReturnType<ReturnType<typeof useSetMyNameHook>>>,
+  TError,
+  { data: SetMyNameRequest },
+  TContext
+> => {
+  const mutationOptions = useSetMyNameMutationOptions(options);
+
+  return useMutation(mutationOptions, queryClient);
+};
+
+export const useSetChatMenuButtonHook = () => {
+  const setChatMenuButton = useCustomInstance<boolean>();
+
+  return useCallback(
+    (
+      setChatMenuButtonRequest: SetChatMenuButtonRequest,
+      options?: SecondParameter<ReturnType<typeof useCustomInstance>>,
+      signal?: AbortSignal
+    ) => {
+      return setChatMenuButton(
+        {
+          data: setChatMenuButtonRequest,
+          headers: { 'Content-Type': 'application/json' },
+          method: 'POST',
+          signal,
+          url: `/setChatMenuButton`,
+        },
+        options
+      );
+    },
+    [setChatMenuButton]
+  );
+};
+
+export const useSetChatMenuButtonMutationOptions = <
+  TError = unknown,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<ReturnType<typeof useSetChatMenuButtonHook>>>,
+    TError,
+    { data: SetChatMenuButtonRequest },
+    TContext
+  >;
+  request?: SecondParameter<ReturnType<typeof useCustomInstance>>;
+}): UseMutationOptions<
+  Awaited<ReturnType<ReturnType<typeof useSetChatMenuButtonHook>>>,
+  TError,
+  { data: SetChatMenuButtonRequest },
+  TContext
+> => {
+  const mutationKey = ['setChatMenuButton'];
+  const { mutation: mutationOptions, request: requestOptions } = options
+    ? options.mutation &&
+      'mutationKey' in options.mutation &&
+      options.mutation.mutationKey
+      ? options
+      : { ...options, mutation: { ...options.mutation, mutationKey } }
+    : { mutation: { mutationKey }, request: undefined };
+
+  const setChatMenuButton = useSetChatMenuButtonHook();
+
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<ReturnType<typeof useSetChatMenuButtonHook>>>,
+    { data: SetChatMenuButtonRequest }
+  > = (props) => {
+    const { data } = props ?? {};
+
+    return setChatMenuButton(data, requestOptions);
+  };
+
+  return { mutationFn, ...mutationOptions };
+};
+
+export type SetChatMenuButtonMutationResult = NonNullable<
+  Awaited<ReturnType<ReturnType<typeof useSetChatMenuButtonHook>>>
+>;
+export type SetChatMenuButtonMutationBody = SetChatMenuButtonRequest;
+export type SetChatMenuButtonMutationError = unknown;
+
+export const useSetChatMenuButton = <TError = unknown, TContext = unknown>(
+  options?: {
+    mutation?: UseMutationOptions<
+      Awaited<ReturnType<ReturnType<typeof useSetChatMenuButtonHook>>>,
+      TError,
+      { data: SetChatMenuButtonRequest },
+      TContext
+    >;
+    request?: SecondParameter<ReturnType<typeof useCustomInstance>>;
+  },
+  queryClient?: QueryClient
+): UseMutationResult<
+  Awaited<ReturnType<ReturnType<typeof useSetChatMenuButtonHook>>>,
+  TError,
+  { data: SetChatMenuButtonRequest },
+  TContext
+> => {
+  const mutationOptions = useSetChatMenuButtonMutationOptions(options);
+
+  return useMutation(mutationOptions, queryClient);
+};
 
 export const useGetChannelsHook = () => {
   const getChannels = useCustomInstance<GetChannelsResponse>();
@@ -727,6 +1009,92 @@ export function useGetChannel<
 
   return query;
 }
+
+export const useSubscribeToChannelHook = () => {
+  const subscribeToChannel = useCustomInstance<void>();
+
+  return useCallback(
+    (
+      username: string,
+      options?: SecondParameter<ReturnType<typeof useCustomInstance>>,
+      signal?: AbortSignal
+    ) => {
+      return subscribeToChannel(
+        { method: 'POST', signal, url: `/api/channels/${username}/subscribe` },
+        options
+      );
+    },
+    [subscribeToChannel]
+  );
+};
+
+export const useSubscribeToChannelMutationOptions = <
+  TError = unknown,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<ReturnType<typeof useSubscribeToChannelHook>>>,
+    TError,
+    { username: string },
+    TContext
+  >;
+  request?: SecondParameter<ReturnType<typeof useCustomInstance>>;
+}): UseMutationOptions<
+  Awaited<ReturnType<ReturnType<typeof useSubscribeToChannelHook>>>,
+  TError,
+  { username: string },
+  TContext
+> => {
+  const mutationKey = ['subscribeToChannel'];
+  const { mutation: mutationOptions, request: requestOptions } = options
+    ? options.mutation &&
+      'mutationKey' in options.mutation &&
+      options.mutation.mutationKey
+      ? options
+      : { ...options, mutation: { ...options.mutation, mutationKey } }
+    : { mutation: { mutationKey }, request: undefined };
+
+  const subscribeToChannel = useSubscribeToChannelHook();
+
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<ReturnType<typeof useSubscribeToChannelHook>>>,
+    { username: string }
+  > = (props) => {
+    const { username } = props ?? {};
+
+    return subscribeToChannel(username, requestOptions);
+  };
+
+  return { mutationFn, ...mutationOptions };
+};
+
+export type SubscribeToChannelMutationResult = NonNullable<
+  Awaited<ReturnType<ReturnType<typeof useSubscribeToChannelHook>>>
+>;
+
+export type SubscribeToChannelMutationError = unknown;
+
+export const useSubscribeToChannel = <TError = unknown, TContext = unknown>(
+  options?: {
+    mutation?: UseMutationOptions<
+      Awaited<ReturnType<ReturnType<typeof useSubscribeToChannelHook>>>,
+      TError,
+      { username: string },
+      TContext
+    >;
+    request?: SecondParameter<ReturnType<typeof useCustomInstance>>;
+  },
+  queryClient?: QueryClient
+): UseMutationResult<
+  Awaited<ReturnType<ReturnType<typeof useSubscribeToChannelHook>>>,
+  TError,
+  { username: string },
+  TContext
+> => {
+  const mutationOptions = useSubscribeToChannelMutationOptions(options);
+
+  return useMutation(mutationOptions, queryClient);
+};
 
 export const useChannelsSearchHook = () => {
   const channelsSearch = useCustomInstance<GetSearchChannelsResponse>();

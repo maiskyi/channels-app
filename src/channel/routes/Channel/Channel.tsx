@@ -14,7 +14,7 @@ import {
   Typography,
 } from '@core/uikit';
 import { RoutePath } from '@bootstrap/constants';
-import { useGetChannel } from '@network/api';
+import { useGetChannel, useSubscribeToChannel } from '@network/api';
 import { Link, useRoute } from '@core/navigation';
 import { useTranslation } from '@core/i18n';
 import { ChannelCard } from '@common/components';
@@ -27,10 +27,30 @@ export const Channel: FC = () => {
   const [{ params }] = useRoute<{ id: string }>();
 
   const {
-    isLoading,
     isFetching,
+    isSuccess,
+    isLoading,
     data = INITIAL_DATA,
+    refetch,
   } = useGetChannel(params.id);
+
+  const { mutate: subscribe, isPending: isSubscribing } =
+    useSubscribeToChannel();
+
+  const handleOnSubscribeUnsubscribe = () => {
+    if (data.isSubscribed) {
+      return;
+    } else {
+      subscribe(
+        {
+          username: params.id,
+        },
+        {
+          onSuccess: () => refetch(),
+        }
+      );
+    }
+  };
 
   return (
     <Page>
@@ -106,14 +126,19 @@ export const Channel: FC = () => {
             </Grid>
           </SafeArea>
         </Content>
-        <Footer>
-          <Button
-            color={data.isSubscribed ? 'secondary' : 'primary'}
-            loading={isFetching}
-          >
-            {t(data.isSubscribed ? 'actions.unsubscribe' : 'actions.subscribe')}
-          </Button>
-        </Footer>
+        {isSuccess && (
+          <Footer>
+            <Button
+              color={data.isSubscribed ? 'secondary' : 'primary'}
+              loading={isFetching || isSubscribing}
+              onClick={handleOnSubscribeUnsubscribe}
+            >
+              {t(
+                data.isSubscribed ? 'actions.unsubscribe' : 'actions.subscribe'
+              )}
+            </Button>
+          </Footer>
+        )}
       </Skeleton>
     </Page>
   );

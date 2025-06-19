@@ -7,7 +7,7 @@ const config = defineConfig({
       afterAllFilesWrite: 'prettier --write',
     },
     input: {
-      target: 'http://localhost:3000/docs/swagger.json',
+      target: 'http://localhost:3001/docs/swagger.json',
     },
     output: {
       client: 'react-query',

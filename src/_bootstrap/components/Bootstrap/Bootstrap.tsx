@@ -5,6 +5,7 @@ import { QueryProvider } from '@network/core';
 import { LocalizationProvider, LocalizationProviderProps } from '@core/i18n';
 
 import { Network, NetworkProps } from '../Network';
+import { MiniApp } from '../MiniApp';
 
 export type BootstrapProps = PropsWithChildren<{
   network: NetworkProps;
@@ -20,7 +21,9 @@ export const Bootstrap: FC<BootstrapProps> = ({
     <ThemeProvider>
       <QueryProvider>
         <LocalizationProvider {...localization}>
-          <Network {...network}>{children}</Network>
+          <MiniApp>
+            <Network {...network}>{children}</Network>
+          </MiniApp>
         </LocalizationProvider>
       </QueryProvider>
     </ThemeProvider>
