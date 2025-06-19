@@ -10,7 +10,7 @@
     "test.e2e": "cypress run",
     "test.unit": "vitest",
     "lint": "eslint ./src --max-warnings=0",
-    "download:api": "curl -o swagger.json http://localhost:3000/docs/swagger.json -H 'Accept: application/json'",
+    "download:api": "curl -o swagger.json http://localhost:3001/docs/swagger.json -H 'Accept: application/json'",
     "gen:api": "yarn download:api && orval && add-ts-nocheck --patterns 'src/_network/api/__generated__/*.ts'"
   },
   "dependencies": {

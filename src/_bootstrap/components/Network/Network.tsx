@@ -6,19 +6,23 @@ import {
   ApiProviderProps,
   OnRequestFulfilledCallback,
 } from '@network/api';
-import { useRawInitData } from '@core/telegram';
+// import { useRawInitData } from '@core/telegram';
+
+import { DEV } from './Network.const';
 
 export type NetworkProps = PropsWithChildren<{
   api: ApiProviderProps;
 }>;
 
 export const Network: FC<NetworkProps> = ({ children, api }) => {
-  const initDataRaw = useRawInitData();
+  // const initDataRaw = useRawInitData();
+  // console.log(initDataRaw);
 
   const handleOnRequestFulfilled: OnRequestFulfilledCallback = (req) => {
     return merge(req, {
       headers: {
-        Authorization: `Tma ${initDataRaw}`,
+        // 'x-init-data-raw': initDataRaw,
+        'x-init-data-raw': DEV,
       },
     });
   };
