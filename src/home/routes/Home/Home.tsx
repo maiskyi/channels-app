@@ -19,7 +19,7 @@ import { useTranslation } from '@core/i18n';
 
 import { ChannelSubscribe } from './_partitions/ChannelSubscribe';
 import { ChannelsEmpty } from './_partitions/ChannelsEmpty';
-import { INITIAL_DATA } from './Home.const';
+import { TAKE, INITIAL_DATA } from './Home.const';
 
 export const Home: FC = () => {
   const { t } = useTranslation();
@@ -27,13 +27,13 @@ export const Home: FC = () => {
   const { isLoading, data, hasNextPage, fetchNextPage, refetch } =
     useGetChannelsInfinite(
       {
-        take: 25,
+        take: TAKE,
       },
       {
         query: {
           getNextPageParam: ({ total }, all) => {
             const count = all.flatMap(({ data }) => data).length;
-            return count < total ? all.length * 25 : undefined;
+            return count < total ? all.length * TAKE : undefined;
           },
         },
       }
@@ -80,7 +80,7 @@ export const Home: FC = () => {
                   return (
                     <Link
                       key={item.id}
-                      params={{ id: item.id }}
+                      params={{ id: item.userName }}
                       pathname={RoutePath.Channel}
                       unstyled
                     >
