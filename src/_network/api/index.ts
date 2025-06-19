@@ -10,6 +10,7 @@ export {
   useGetChannelsInfinite,
   useGetChannel,
   useSubscribeToChannel,
+  useUnsubscribeFromChannel,
 } from './__generated__/client';
 
 export { DTO };

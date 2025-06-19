@@ -5,7 +5,7 @@ export const INITIAL_DATA: DTO.GetChannelResponse = {
   isSubscribed: false,
   photo: 'photo',
   recommendations: Array.from({ length: 3 }).map((_, index) => ({
-    id: index.toString(),
+    id: index,
     photo: 'photo',
     title: 'title',
     userName: 'userName',

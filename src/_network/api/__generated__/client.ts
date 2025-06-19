@@ -38,6 +38,7 @@ import type {
   SetChatMenuButtonRequest,
   SetMyCommandsRequest,
   SetMyNameRequest,
+  Subscription,
 } from './client.schemas';
 
 type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
@@ -1011,7 +1012,7 @@ export function useGetChannel<
 }
 
 export const useSubscribeToChannelHook = () => {
-  const subscribeToChannel = useCustomInstance<void>();
+  const subscribeToChannel = useCustomInstance<Subscription>();
 
   return useCallback(
     (
@@ -1092,6 +1093,96 @@ export const useSubscribeToChannel = <TError = unknown, TContext = unknown>(
   TContext
 > => {
   const mutationOptions = useSubscribeToChannelMutationOptions(options);
+
+  return useMutation(mutationOptions, queryClient);
+};
+
+export const useUnsubscribeFromChannelHook = () => {
+  const unsubscribeFromChannel = useCustomInstance<Subscription>();
+
+  return useCallback(
+    (
+      username: string,
+      options?: SecondParameter<ReturnType<typeof useCustomInstance>>,
+      signal?: AbortSignal
+    ) => {
+      return unsubscribeFromChannel(
+        {
+          method: 'POST',
+          signal,
+          url: `/api/channels/${username}/unsubscribe`,
+        },
+        options
+      );
+    },
+    [unsubscribeFromChannel]
+  );
+};
+
+export const useUnsubscribeFromChannelMutationOptions = <
+  TError = unknown,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<ReturnType<typeof useUnsubscribeFromChannelHook>>>,
+    TError,
+    { username: string },
+    TContext
+  >;
+  request?: SecondParameter<ReturnType<typeof useCustomInstance>>;
+}): UseMutationOptions<
+  Awaited<ReturnType<ReturnType<typeof useUnsubscribeFromChannelHook>>>,
+  TError,
+  { username: string },
+  TContext
+> => {
+  const mutationKey = ['unsubscribeFromChannel'];
+  const { mutation: mutationOptions, request: requestOptions } = options
+    ? options.mutation &&
+      'mutationKey' in options.mutation &&
+      options.mutation.mutationKey
+      ? options
+      : { ...options, mutation: { ...options.mutation, mutationKey } }
+    : { mutation: { mutationKey }, request: undefined };
+
+  const unsubscribeFromChannel = useUnsubscribeFromChannelHook();
+
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<ReturnType<typeof useUnsubscribeFromChannelHook>>>,
+    { username: string }
+  > = (props) => {
+    const { username } = props ?? {};
+
+    return unsubscribeFromChannel(username, requestOptions);
+  };
+
+  return { mutationFn, ...mutationOptions };
+};
+
+export type UnsubscribeFromChannelMutationResult = NonNullable<
+  Awaited<ReturnType<ReturnType<typeof useUnsubscribeFromChannelHook>>>
+>;
+
+export type UnsubscribeFromChannelMutationError = unknown;
+
+export const useUnsubscribeFromChannel = <TError = unknown, TContext = unknown>(
+  options?: {
+    mutation?: UseMutationOptions<
+      Awaited<ReturnType<ReturnType<typeof useUnsubscribeFromChannelHook>>>,
+      TError,
+      { username: string },
+      TContext
+    >;
+    request?: SecondParameter<ReturnType<typeof useCustomInstance>>;
+  },
+  queryClient?: QueryClient
+): UseMutationResult<
+  Awaited<ReturnType<ReturnType<typeof useUnsubscribeFromChannelHook>>>,
+  TError,
+  { username: string },
+  TContext
+> => {
+  const mutationOptions = useUnsubscribeFromChannelMutationOptions(options);
 
   return useMutation(mutationOptions, queryClient);
 };
