@@ -14,7 +14,11 @@ import {
   Typography,
 } from '@core/uikit';
 import { RoutePath } from '@bootstrap/constants';
-import { useGetChannel, useSubscribeToChannel } from '@network/api';
+import {
+  useGetChannel,
+  useSubscribeToChannel,
+  useUnsubscribeFromChannel,
+} from '@network/api';
 import { Link, useRoute } from '@core/navigation';
 import { useTranslation } from '@core/i18n';
 import { ChannelCard } from '@common/components';
@@ -37,9 +41,19 @@ export const Channel: FC = () => {
   const { mutate: subscribe, isPending: isSubscribing } =
     useSubscribeToChannel();
 
+  const { mutate: unsubscribe, isPending: isUnsubscribing } =
+    useUnsubscribeFromChannel();
+
   const handleOnSubscribeUnsubscribe = () => {
     if (data.isSubscribed) {
-      return;
+      unsubscribe(
+        {
+          username: params.id,
+        },
+        {
+          onSuccess: () => refetch(),
+        }
+      );
     } else {
       subscribe(
         {
@@ -130,7 +144,7 @@ export const Channel: FC = () => {
           <Footer>
             <Button
               color={data.isSubscribed ? 'secondary' : 'primary'}
-              loading={isFetching || isSubscribing}
+              loading={isFetching || isSubscribing || isUnsubscribing}
               onClick={handleOnSubscribeUnsubscribe}
             >
               {t(

@@ -36,7 +36,7 @@ export interface SetChatMenuButtonRequest {
 }
 
 export interface ChannelItem {
-  id: string;
+  id: number;
   title: string;
   userName?: string;
   /** @nullable */
@@ -57,6 +57,16 @@ export interface GetChannelResponse {
   photo: string | null;
   isSubscribed: boolean;
   recommendations: ChannelItem[];
+}
+
+export interface Subscription {
+  id: string;
+  /** @nullable */
+  createdAt: string | null;
+  /** @nullable */
+  userId: string | null;
+  /** @nullable */
+  channelId: string | null;
 }
 
 export interface GetSearchChannelsResponse {
